@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATX Resell Co. - Local Pickup Catalog</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            900: '#831843',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+        }
+        /* Custom scrollbar for clean horizontal scrolling filter tags */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 min-h-screen flex flex-col">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-stone-900 text-stone-100 px-4 py-2 text-xs font-medium text-center flex items-center justify-center gap-2 shadow-sm">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>📍 <strong>LOCAL PICKUP ONLY</strong> in Austin, TX (South Congress / Downtown Area)</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-200">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold text-lg shadow-inner">
+                    ✨
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg sm:text-xl tracking-tight text-stone-900 leading-none">ATX Resell & Co.</h1>
+                    <p class="text-xs text-stone-500 mt-0.5">Curated Beauty, Accessories & Finds</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-2 text-xs text-stone-600 bg-stone-100 px-3 py-1.5 rounded-full border border-stone-200">
+                <i class="fa-solid fa-store text-stone-500"></i>
+                <span>DM to Claim & Pickup Today</span>
+            </div>
+        </div>
+
+        <!-- Horizontal Category Filter Bar -->
+        <div class="max-w-6xl mx-auto px-4 pb-3">
+            <div id="categoryContainer" class="flex gap-2 overflow-x-auto no-scrollbar py-1">
+                <!-- Dynamic Category Buttons Populated Here -->
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid Area -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+        
+        <!-- Local Notice Card -->
+        <div class="mb-6 p-4 rounded-2xl bg-rose-50/70 border border-rose-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-stone-700">
+            <div class="flex items-start gap-3">
+                <div class="p-2 bg-rose-100 text-rose-600 rounded-xl mt-0.5 sm:mt-0">
+                    <i class="fa-solid fa-bag-shopping text-base"></i>
+                </div>
+                <div>
+                    <h2 class="text-sm font-semibold text-stone-900">How Buying Works Here</h2>
+                    <p class="text-xs text-stone-600 mt-0.5">Select your item variations below, click <strong>Reserve for Pickup</strong>, and send the auto-generated order summary to our Instagram or Facebook DM!</p>
+                </div>
+            </div>
+            <a href="#pickup-info" class="text-xs font-semibold text-rose-600 hover:text-rose-700 whitespace-nowrap flex items-center gap-1">
+                Pickup Rules <i class="fa-solid fa-arrow-down text-[10px]"></i>
+            </a>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <!-- Dynamic Product Cards Injected Here -->
+        </div>
+
+        <!-- Empty State (Hidden by Default) -->
+        <div id="emptyState" class="hidden text-center py-16">
+            <i class="fa-solid fa-box-open text-4xl text-stone-300 mb-3"></i>
+            <h3 class="text-base font-medium text-stone-700">No items found</h3>
+            <p class="text-xs text-stone-500 mt-1">Try selecting a different category filter above.</p>
+        </div>
+    </main>
+
+    <!-- Pickup Guidelines & FAQ Section -->
+    <section id="pickup-info" class="bg-white border-t border-stone-200 py-8 px-4 mt-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-lg font-bold text-stone-900 mb-4 text-center sm:text-left flex items-center gap-2 justify-center sm:justify-start">
+                <i class="fa-solid fa-location-dot text-rose-500"></i> Local Pickup Details & Terms
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-stone-600">
+                <div class="p-4 bg-stone-50 rounded-xl border border-stone-200/80">
+                    <div class="font-semibold text-stone-900 mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-clock text-amber-500"></i> Pickup Hours
+                    </div>
+                    <p>Mon – Sat: 10:00 AM – 7:00 PM<br>Sunday: By Appointment</p>
+                </div>
+                <div class="p-4 bg-stone-50 rounded-xl border border-stone-200/80">
+                    <div class="font-semibold text-stone-900 mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-credit-card text-emerald-500"></i> Accepted Payment
+                    </div>
+                    <p>Cash, Venmo, Zelle, or CashApp upon arrival or prior to hold.</p>
+                </div>
+                <div class="p-4 bg-stone-50 rounded-xl border border-stone-200/80">
+                    <div class="font-semibold text-stone-900 mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-handshake text-blue-500"></i> Holds & Reservations
+                    </div>
+                    <p>Items held for 24 hrs maximum after order confirmation via DM.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 text-xs py-6 px-4 border-t border-stone-800">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div>
+                <p class="font-semibold text-stone-200">ATX Resell & Co.</p>
+                <p class="text-stone-500 mt-0.5">Austin, TX Local Reseller • No Shipping Required</p>
+            </div>
+            <div class="flex items-center gap-4 text-stone-300 text-base">
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram Profile" class="hover:text-rose-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook Profile" class="hover:text-rose-400 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reservation Modal / Drawer -->
+    <div id="orderModal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl transition-all transform flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header -->
+            <div class="px-5 py-4 border-b border-stone-200 flex items-center justify-between bg-stone-50">
+                <div class="flex items-center gap-2">
+                    <span class="p-1.5 bg-rose-100 text-rose-600 rounded-lg text-xs font-bold">Step 2 of 2</span>
+                    <h3 class="font-bold text-stone-900 text-base">Complete Order Request</h3>
+                </div>
+                <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 p-1 rounded-full text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-5 overflow-y-auto space-y-4">
+                
+                <!-- Selected Item Card Summary -->
+                <div class="flex gap-3 p-3 bg-stone-50 rounded-xl border border-stone-200 items-center">
+                    <img id="modalItemImage" src="" alt="Selected Product" class="w-16 h-16 object-cover rounded-lg border border-stone-200 bg-white">
+                    <div class="flex-1">
+                        <h4 id="modalItemTitle" class="font-bold text-sm text-stone-900">Product Name</h4>
+                        <div class="text-xs text-stone-500 mt-0.5 flex gap-2">
+                            <span>Selected: <strong id="modalSelectedVariant" class="text-stone-800">Standard</strong></span>
+                        </div>
+                        <div class="text-sm font-bold text-rose-600 mt-1" id="modalItemPrice">$0.00</div>
+                    </div>
+                </div>
+
+                <!-- Generated Message Textarea -->
+                <div>
+                    <label class="block text-xs font-semibold text-stone-700 mb-1">Generated Order DM Message:</label>
+                    <div class="relative">
+                        <textarea id="dmMessageText" readonly class="w-full h-28 text-xs p-3 bg-stone-100 rounded-xl border border-stone-200 text-stone-800 font-mono focus:outline-none resize-none"></textarea>
+                        <button onclick="copyMessageText()" class="absolute top-2 right-2 px-2.5 py-1 bg-white shadow-xs border border-stone-200 text-stone-700 hover:bg-stone-50 rounded-md text-[11px] font-medium flex items-center gap-1 transition-colors">
+                            <i class="fa-regular fa-copy"></i> <span id="copyBtnLabel">Copy Text</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-amber-50 rounded-xl border border-amber-200/80 text-amber-800 text-xs">
+                    <i class="fa-solid fa-circle-info mr-1 text-amber-600"></i>
+                    <strong>Next Step:</strong> Click either Instagram or Facebook below to launch DMs and paste this message!
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Action Buttons -->
+            <div class="p-5 border-t border-stone-200 bg-stone-50 flex flex-col sm:flex-row gap-2">
+                <a id="igDmBtn" href="https://instagram.com" target="_blank" onclick="copyMessageText()" class="flex-1 py-2.5 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-medium rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+                    <i class="fa-brands fa-instagram text-base"></i> Open Instagram DM
+                </a>
+                <a id="fbDmBtn" href="https://facebook.com" target="_blank" onclick="copyMessageText()" class="flex-1 py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all">
+                    <i class="fa-brands fa-facebook-messenger text-base"></i> Open FB Message
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-4 right-4 z-50 bg-stone-900 text-white px-4 py-2.5 rounded-xl shadow-xl text-xs font-medium flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Order message copied to clipboard!</span>
+    </div>
+
+    <script>
+        // Sample Inventory Catalog Data
+        const products = [
+            {
+                id: 'prod-1',
+                title: 'Plush Motel Style Keychain',
+                category: 'Keychains',
+                price: 7.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Colors',
+                variants: ['Pastel Pink', 'Sage Green', 'Lilac', 'Cream']
+            },
+            {
+                id: 'prod-2',
+                title: 'Matte Liquid Lip Gloss & Liner Set',
+                category: 'Makeup',
+                price: 12.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Shade',
+                variants: ['Dusty Rose', 'Nude Peach', 'Berry Red']
+            },
+            {
+                id: 'prod-3',
+                title: 'Self-Care & Glam Gift Bundle',
+                category: 'Gift Bundles',
+                price: 24.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Style',
+                variants: ['Pink Theme Box', 'Neutral Nude Box']
+            },
+            {
+                id: 'prod-4',
+                title: 'Mini Portable LED Makeup Mirror',
+                category: 'Accessories',
+                price: 15.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1526045612212-70caf35c14df?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Color',
+                variants: ['White', 'Soft Pink']
+            },
+            {
+                id: 'prod-5',
+                title: 'Beaded Charm Bag Accessory',
+                category: 'Keychains',
+                price: 9.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Design',
+                variants: ['Flower Charm', 'Butterfly Charm', 'Star Charm']
+            },
+            {
+                id: 'prod-6',
+                title: 'Hydrating Lip Oil & Gloss Tint',
+                category: 'Makeup',
+                price: 8.50,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Flavor/Shade',
+                variants: ['Cherry Tint', 'Honey Clear', 'Vanilla Bronze']
+            },
+            {
+                id: 'prod-7',
+                title: 'Chunky Acrylic Claw Clip Trio',
+                category: 'Accessories',
+                price: 10.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Palette',
+                variants: ['Tortoise Shell Mix', 'Neutral Matte', 'Pastel Mix']
+            },
+            {
+                id: 'prod-8',
+                title: 'Ultimate Accessories & Beauty Pouch',
+                category: 'Gift Bundles',
+                price: 28.00,
+                status: 'In Stock for Pickup',
+                image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=500&auto=format&fit=crop&q=80',
+                variantsLabel: 'Includes',
+                variants: ['Keychain + Lip Oil + Clip', 'Mirror + Lip Gloss + Keychain']
+            }
+        ];
+
+        const categories = ['All', 'Keychains', 'Makeup', 'Accessories', 'Gift Bundles'];
+        let activeCategory = 'All';
+        
+        // Track selected variant per product card (e.g. { 'prod-1': 'Pastel Pink' })
+        const selectedVariants = {};
+
+        // Active Item for Modal
+        let currentModalProduct = null;
+
+        // Initialize App on DOM Ready
+        window.onload = function() {
+            renderCategoryFilters();
+            // Pre-select default first variant for each item
+            products.forEach(p => {
+                if (p.variants && p.variants.length > 0) {
+                    selectedVariants[p.id] = p.variants[0];
+                }
+            });
+            renderProducts();
+        };
+
+        // Render Category Tabs
+        function renderCategoryFilters() {
+            const container = document.getElementById('categoryContainer');
+            container.innerHTML = categories.map(cat => {
+                const isActive = cat === activeCategory;
+                const activeClass = isActive 
+                    ? 'bg-stone-900 text-white font-semibold shadow-xs' 
+                    : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200 font-medium';
+                return `<button onclick="setCategory('${cat}')" class="px-3.5 py-1.5 rounded-full text-xs whitespace-nowrap transition-all ${activeClass}">${cat}</button>`;
+            }).join('');
+        }
+
+        // Filter Setter
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategoryFilters();
+            renderProducts();
+        }
+
+        // Render Product Grid
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            const filtered = activeCategory === 'All' 
+                ? products 
+                : products.filter(p => p.category === activeCategory);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            grid.innerHTML = filtered.map(p => {
+                const currentSelected = selectedVariants[p.id] || p.variants[0];
+
+                const variantPills = p.variants.map(v => {
+                    const isSelected = v === currentSelected;
+                    const pillClass = isSelected
+                        ? 'bg-rose-500 text-white border-rose-500 font-medium'
+                        : 'bg-stone-100 text-stone-600 hover:bg-stone-200 border-stone-200';
+                    return `<button onclick="selectVariant('${p.id}', '${v}')" class="px-2.5 py-1 text-[11px] rounded-lg border transition-all ${pillClass}">${v}</button>`;
+                }).join('');
+
+                return `
+                <div class="bg-white rounded-2xl border border-stone-200 overflow-hidden shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+                    <div>
+                        <!-- Product Image Box -->
+                        <div class="relative bg-stone-100 aspect-square overflow-hidden group">
+                            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <span class="absolute top-2.5 left-2.5 bg-stone-900/80 backdrop-blur-xs text-white text-[10px] font-semibold px-2 py-0.5 rounded-md">
+                                ${p.category}
+                            </span>
+                        </div>
+
+                        <!-- Product Content -->
+                        <div class="p-4">
+                            <div class="flex items-center justify-between gap-2 mb-1">
+                                <span class="text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100 flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> ${p.status}
+                                </span>
+                                <span class="text-base font-bold text-stone-900">$${p.price.toFixed(2)}</span>
+                            </div>
+
+                            <h3 class="font-bold text-stone-800 text-sm mb-3 line-clamp-1">${p.title}</h3>
+
+                            <!-- Variants Selector -->
+                            <div class="mb-4">
+                                <label class="block text-[11px] font-semibold text-stone-500 uppercase tracking-wider mb-1.5">
+                                    ${p.variantsLabel}:
+                                </label>
+                                <div class="flex flex-wrap gap-1.5">
+                                    ${variantPills}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="px-4 pb-4 pt-0">
+                        <button onclick="openOrderModal('${p.id}')" class="w-full py-2.5 px-4 bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs rounded-xl shadow-xs transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bag-shopping text-xs"></i> Reserve for Pickup
+                        </button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Select Variant for a specific card
+        function selectVariant(productId, variantValue) {
+            selectedVariants[productId] = variantValue;
+            renderProducts();
+        }
+
+        // Open Modal and Format Order Message
+        function openOrderModal(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            currentModalProduct = product;
+            const chosenVariant = selectedVariants[productId] || product.variants[0];
+
+            document.getElementById('modalItemTitle').innerText = product.title;
+            document.getElementById('modalSelectedVariant').innerText = chosenVariant;
+            document.getElementById('modalItemPrice').innerText = `$${product.price.toFixed(2)}`;
+            document.getElementById('modalItemImage').src = product.image;
+
+            // Formatted DM text
+            const dmText = `Hi! I'd like to reserve this item for local pickup in Austin:\n\n• Item: ${product.title}\n• ${product.variantsLabel}: ${chosenVariant}\n• Price: $${product.price.toFixed(2)}\n\nWhen & where can I meet up for pickup? Thanks!`;
+
+            document.getElementById('dmMessageText').value = dmText;
+
+            // Display Modal
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('hidden');
+        }
+
+        // Close Modal
+        function closeModal() {
+            document.getElementById('orderModal').classList.add('hidden');
+        }
+
+        // Copy generated message text to clipboard
+        function copyMessageText() {
+            const textarea = document.getElementById('dmMessageText');
+            textarea.select();
+            textarea.setSelectionRange(0, 99999); // Mobile compatibility
+
+            try {
+                document.execCommand('copy');
+                showToast("Order message copied! Paste it in your DM.");
+                const copyBtnLabel = document.getElementById('copyBtnLabel');
+                copyBtnLabel.innerText = "Copied!";
+                setTimeout(() => { copyBtnLabel.innerText = "Copy Text"; }, 2500);
+            } catch (err) {
+                showToast("Failed to auto-copy. Please highlight and copy manually.");
+            }
+        }
+
+        // Show Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').innerText = message;
+            
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Close modal on background click
+        window.onclick = function(event) {
+            const modal = document.getElementById('orderModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
